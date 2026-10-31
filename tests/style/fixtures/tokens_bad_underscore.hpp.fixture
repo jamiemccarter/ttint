@@ -1,0 +1,6 @@
+#pragma once
+
+struct Holder {
+    int _leading;
+    int __double_leading;
+};

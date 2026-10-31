@@ -1,0 +1,26 @@
+// typedef and NULL are fine in comments: typedef int a; void* p = NULL; int _x;
+/* block comment
+   typedef int b; NULL; _hidden
+*/
+// a comment continued onto the next line by a backslash \
+typedef int still_inside_the_comment;
+#include <cstdio>
+#include <string>
+
+#if defined(_WIN32)
+#include <io.h>
+inline int is_terminal_for_windows(int descriptor) { return _isatty(descriptor); }
+#endif
+
+int main() {
+    const char* quoted = "typedef NULL _underscored";
+    const char escaped[] = "quote \" typedef NULL";
+    const char* raw = R"delim(typedef int c; NULL; _raw)delim";
+    const char single = '\'';
+    const int separated = 1'000'000;
+    const wchar_t wide_quote = L'"';
+    const char16_t u16 = u'\'';
+    const char utf8 = u8'"';
+    std::string joined = std::string(quoted) + escaped + raw;
+    return static_cast<int>(joined.size()) + single + separated;
+}

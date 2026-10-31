@@ -1,0 +1,3 @@
+#include "doctest.h"
+
+TEST_CASE("render_ansi with simple segments") {}

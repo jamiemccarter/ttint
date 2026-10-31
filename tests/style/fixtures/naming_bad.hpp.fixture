@@ -1,0 +1,54 @@
+#pragma once
+
+#include <concepts>
+
+#define bad_macro 1
+
+namespace BadNamespace {
+
+struct bad_type {};
+
+union bad_union {
+    int unused;
+};
+
+using bad_alias = int;
+
+typedef int bad_typedef;
+
+enum class bad_enum { Fine };
+
+enum class BadEnum { bad_enumerator };
+
+template <typename bad_template_parameter>
+concept bad_concept = std::integral<bad_template_parameter>;
+
+inline int BadFunction() {
+    return 0;
+}
+
+constexpr int kBadConstant = 1;
+constexpr int BadConstexpr = 2;
+const int BadConstGlobal = 3;
+
+class Widget {
+public:
+    int BadPublicMember;
+    int bad_method_BadName() const;
+
+protected:
+    int protected_without_suffix;
+    int Bad_protected_case_;
+
+private:
+    int hidden_without_suffix;
+    int Bad_private_case_;
+};
+
+inline int use(int BadParameter) {
+    constexpr int BadLocalConstant = 4;
+    int BadLocal = BadParameter + BadLocalConstant;
+    return BadLocal;
+}
+
+} // namespace BadNamespace

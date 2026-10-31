@@ -1,0 +1,46 @@
+#pragma once
+
+#include <concepts>
+
+#define GOOD_MACRO 1
+
+namespace good_namespace {
+
+struct GoodType {
+    bool bold = false;
+    int r = 0;
+};
+
+union GoodUnion {
+    int unused;
+};
+
+using GoodAlias = int;
+
+enum class GoodEnum { Automatic, Always };
+
+template <typename GoodTemplateParameter>
+concept GoodConcept = std::integral<GoodTemplateParameter>;
+
+class Widget {
+public:
+    int public_member = 0;
+
+    int good_method() const { return stored_ + protected_; }
+
+protected:
+    int protected_ = 0;
+
+private:
+    int stored_ = 0;
+};
+
+constexpr int good_constant = 1;
+const int good_const_global = 2;
+
+inline int render_ansi(int frame_count) {
+    int local_value = frame_count + good_constant;
+    return local_value;
+}
+
+} // namespace good_namespace

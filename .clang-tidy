@@ -1,0 +1,30 @@
+# Naming rules from docs/STYLE_GUIDE.md. Run through scripts/check_style.py, which
+# supplies the compile flags and runs it over include/TTint/, examples/ and tests/*.hpp. Test sources
+# (tests/*.cpp) are deliberately out of scope (doctest macros generate identifiers);
+# expect noise there if clang-tidy or an IDE is pointed at them directly.
+Checks: '-*,readability-identifier-naming'
+WarningsAsErrors: 'readability-identifier-naming'
+HeaderFilterRegex: '(include/TTint|examples)/.*'
+CheckOptions:
+  # Types and enumerators: PascalCase (structs follow ClassCase)
+  - { key: readability-identifier-naming.ClassCase, value: CamelCase }
+  - { key: readability-identifier-naming.UnionCase, value: CamelCase }
+  - { key: readability-identifier-naming.EnumCase, value: CamelCase }
+  - { key: readability-identifier-naming.EnumConstantCase, value: CamelCase }
+  - { key: readability-identifier-naming.TypeAliasCase, value: CamelCase }
+  - { key: readability-identifier-naming.TypedefCase, value: CamelCase }
+  - { key: readability-identifier-naming.TemplateParameterCase, value: CamelCase }
+  - { key: readability-identifier-naming.ConceptCase, value: CamelCase }
+  # Callables (methods follow FunctionCase), variables, constants, namespaces: snake_case.
+  # Constants are variables, so VariableCase also enforces snake_case constants (no k prefix).
+  - { key: readability-identifier-naming.FunctionCase, value: lower_case }
+  - { key: readability-identifier-naming.VariableCase, value: lower_case }
+  - { key: readability-identifier-naming.ParameterCase, value: lower_case }
+  - { key: readability-identifier-naming.NamespaceCase, value: lower_case }
+  # Data members: snake_case, with a trailing underscore only on non-public storage
+  - { key: readability-identifier-naming.PublicMemberCase, value: lower_case }
+  - { key: readability-identifier-naming.PrivateMemberCase, value: lower_case }
+  - { key: readability-identifier-naming.PrivateMemberSuffix, value: _ }
+  - { key: readability-identifier-naming.ProtectedMemberCase, value: lower_case }
+  - { key: readability-identifier-naming.ProtectedMemberSuffix, value: _ }
+  - { key: readability-identifier-naming.MacroDefinitionCase, value: UPPER_CASE }

@@ -1,0 +1,2 @@
+// The quote inside L'"' must not open a string that swallows the NULL after it.
+wchar_t quote = L'"'; void* pointer = NULL; const char* text = "x";
